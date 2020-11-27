@@ -5,7 +5,7 @@
 |  Column               | Type   | Options     |
 | --------------------- | ------ | ----------- |
 | nickname              | string | null: false |
-| email                 | string | null: false |
+| email                 | string | uniqueness: true |
 | encrypted_password    | string | null: false |
 | first_name            | string | null: false |
 | first_name_kana       | string | null: false |
@@ -29,8 +29,8 @@
 | shipping_charges_id   | integer   | null:false  | 
 | shipping_area_id      | integer   | null:false  |
 | estimated_shipping_id | integer   | null:false  |
-| product_description_id| text      | null:false  |
-| price_id              | integer   | null:false  |
+| product_description   | text      | null:false  |
+| price                 | integer   | null:false  |
 | user                  | references | null: false, foreign_key: true｜
 
 
