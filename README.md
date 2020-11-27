@@ -6,36 +6,38 @@
 | --------------------- | ------ | ----------- |
 | nickname              | string | null: false |
 | email                 | string | null: false |
-| password              | string | null: false |
-| name(full-width)      | string | null: false |
-| name.kana(full-width) | string | null: false |
-| birth_year            | data   | null: false |
-| birth_mouth           | data   | null: false |
-| birth_day             | data   | null: false |
+| encrypted_password    | string | null: false |
+| first_name            | string | null: false |
+| first_name_kana       | string | null: false |
+| last_name             | string | null: false |
+| last_name_kana        | string | null: false |
+| birth_year            | date   | null: false |
+| birth_mouth           | date   | null: false |
+| birth_day             | date   | null: false |
 
 ### Association
 
-- has_many  :order
+- has_many  :orders
 - has_many  :items
 
 
 ## items テーブル
 
-| Column             | Type   | Options     |
-| ------             | ------ | ----------- |
-| sell               | string | null:false  | 
-| category           | string | null:false  |
-| product condition  | string | null:false  |
-| shipping charges   | string | null:false  | 
-| shipping area      | string | null:false  |
-| estimated shipping | date   | null:false  |
+| Column             | Type    | Options     |
+| ------             | ------  | ----------- |
+| sell               | string  | null:false  | 
+| category           | integer | null:false  |
+| product_condition  | integer | null:false  |
+| shipping_charges   | integer | null:false  | 
+| shipping_area      | integer | null:false  |
+| estimated_shipping | integer | null:false  |
 
 ### Association
-
+- has_one :orders
 - belongs_to :user
 
 
-## order テーブル
+## orders テーブル
 
 | Column    | Type   | Options     |
 | --------  | ------ | ----------- |
@@ -43,21 +45,21 @@
 | category  | string | null:false  |
 
 ### Association
-
+- has_one :items
 - has_many :address
 - belongs_to :user
 
 
 ## addressテーブル
 
-| Column        | Type    | Options     |
-| --------      | ------  | ----------- |
-| postal code   | integer | null:false  |
-| prefectures   | text    | null:false  |
-| municipality  | text    | null:false  |
-| address       | integer | null:false  |
-| building name | text    | null:false  |
-| phone number  | integre | null:false  |
+| Column          | Type    | Options     |
+| --------------- | ------  | ----------- |
+| postal_code     | string  | null:false  |
+| prefecture_id   | integer | null:false  |
+| municipality    | string  | null:false  |
+| address         | string  | null:false  |
+| building_name   | text    |
+| phone number    | string  | null:false  |
 
 
 ### Association
