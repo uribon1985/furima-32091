@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column             | Type      | Options     |
-| ------             | ------    | ----------- |
-| sell               | string    | null:false  | 
-| category           | integer   | null:false  |
-| product_condition  | integer   | null:false  |
-| shipping_charges   | integer   | null:false  | 
-| shipping_area      | integer   | null:false  |
-| estimated_shipping | integer   | null:false  |
-| product_description| integer   | null:false  |
-| price              | integer   | null:false  |
-| user               | reference | null: false, foreign_key: true｜
+| Column                | Type      | Options     |
+| ------                | ------    | ----------- |
+| name                  | string    | null:false  | 
+| category_id           | integer   | null:false  |
+| product_condition_id  | integer   | null:false  |
+| shipping_charges_id   | integer   | null:false  | 
+| shipping_area_id      | integer   | null:false  |
+| estimated_shipping_id | integer   | null:false  |
+| product_description_id| text      | null:false  |
+| price_id              | integer   | null:false  |
+| user                  | references | null: false, foreign_key: true｜
 
 
 ### Association
@@ -41,10 +41,10 @@
 
 ## orders テーブル
 
-| Column    | Type      | Options                        |
-| --------  | ------    | ------------------------------ |
-| user      | reference | null: false, foreign_key: true |
-| itmes     | reference | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------  | ------     | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| itme      | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
@@ -53,16 +53,16 @@
 
 ## addressテーブル
 
-| Column          | Type      | Options     |
-| --------------- | ------    | ----------- |
-| postal_code     | string    | null:false  |
-| prefecture_id   | integer   | null:false  |
-| municipality    | string    | null:false  |
-| address         | string    | null:false  |
-| building_name   | string    |
-| phone number    | string    | null:false  |
-| user            | reference | null: false, foreign_key: true |
-| itmes           | reference | null: false, foreign_key: true |
+| Column             | Type       | Options     |
+| ---------------    | ------     | ----------- |
+| postal_code        | string     | null:false  |
+| shipping_area_id   | integer    | null:false  |
+| municipality       | string     | null:false  |
+| address            | string     | null:false  |
+| building_name      | string     |
+| phone number       | string     | null:false  |
+| user               | references | null: false, foreign_key: true |
+| itme               | references | null: false, foreign_key: true |
 
 
 
