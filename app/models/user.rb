@@ -12,8 +12,7 @@ class User < ApplicationRecord
   end
     validates :password, presence: true
     validates :password, length: { minimum: 6 }
-    VALID_PASSWORD_REGIX = /\A[a-z0-9]+\z/i
-    validates :password, format: { with: VALID_PASSWORD_REGIX }
+    validates :password, format: { with: /\A[a-z0-9]+\z/i, message: '半角英数字混合で入力してください' }
     validates :nickname, presence: true
     validates :birthday, presence: true
 
