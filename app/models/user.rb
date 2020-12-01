@@ -10,11 +10,14 @@ class User < ApplicationRecord
     validates :last_name
     validates :last_name_kana
   end
-    validates :password, presence: true
+    
+  with_options presence: true do
+    validates :password 
+    validates :nickname
+    validates :birthday
+  end
     validates :password, length: { minimum: 6 }
     validates :password, format: { with: /\A[a-z0-9]+\z/i, message: '半角英数字混合で入力してください' }
-    validates :nickname, presence: true
-    validates :birthday, presence: true
 
    has_many  :orders
    has_many  :items
