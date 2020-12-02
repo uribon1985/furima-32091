@@ -6,6 +6,10 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
+    it 'nicknameとemailとpasswordとfirst_nameとfirst_name_kanaとlast_nameとlast_name_kanaとbirthdayが存在していれば保存できること' do
+      expect(@user).to be_valid
+    end
+
     it "nicknameが必須であること"do
       @user.nickname = nil
       @user.valid?
@@ -74,11 +78,23 @@ RSpec.describe User, type: :model do
     end
 
     it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること"do
-      @user.first_name = "test"
+      @user.first_name_kana = "test"
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+      expect(@user.errors.full_messages).to include("First name kana 全角カタカナを使用してください")
     end
 
+    it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること"do
+      @user.last_name = "test"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+    end
+
+    it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること"do
+      @user.last_name_kana = "test"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 全角カタカナを使用してください")
+    end
+  
     it "メールアドレスは、@を含む必要があること"do
       @user.email = "1a.com"
       @user.valid?
