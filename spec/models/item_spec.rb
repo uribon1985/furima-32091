@@ -48,9 +48,9 @@ RSpec.describe Item, type: :model do
     end
 
     it '発送元の地域についての情報が必須であること'do
-      @item.shipping_area_id = 1
+      @item.shipping_area_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping area must be other than 0")
     end
 
     it '発送までの日数についての情報が必須であること'do
