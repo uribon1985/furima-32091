@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
   describe '#create' do
     before do
       @item = FactoryBot.build(:item)
     end
 
-
-
+    it 'imageとnameとproduct_descriptionとcategory_idとproduct_condition_idとshipping_charges_idとshipping_area_idとpriceが存在していれば保存できる事'do
+     expect(@item).to be_valid
+    end
 
     it '商品画像を1枚つけることが必須であること'do 
      @item.image = nil
@@ -29,33 +29,34 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーの情報が必須であること'do
-     @item.category_id = ""
+     @item.category_id = "1"
      @item.valid?
-     expect(@item.errors.full_messages).to include("Category can't be blank")
+     expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
+    
 
     it '商品の状態についての情報が必須であること'do
-     @item.product_condition_id = ""
+     @item.product_condition_id = "1"
      @item.valid?
-     expect(@item.errors.full_messages).to include("Product condition can't be blank")
+     expect(@item.errors.full_messages).to include("Product condition must be other than 1")
     end
 
     it '配送料の負担についての情報が必須であること'do
-     @item.shipping_charges_id = ""
+     @item.shipping_charges_id = "1"
      @item.valid?
-     expect(@item.errors.full_messages).to include("Shipping charges can't be blank")
+     expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
     end
 
     it '発送元の地域についての情報が必須であること'do
-      @item.shipping_area_id = ""
+      @item.shipping_area_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
     end
 
     it '発送までの日数についての情報が必須であること'do
-      @item.estimated_shipping_id = ""
+      @item.estimated_shipping_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Estimated shipping can't be blank")
+      expect(@item.errors.full_messages).to include("Estimated shipping must be other than 1")
     end
 
     it '価格についての情報が必須であること'do
@@ -71,13 +72,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の範囲が、¥300以上であること'do
-      @item.price = "¥299"
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is out of setting range")
     end
 
     it '価格の範囲が、¥9999999未満であること'do
-      @item.price = "¥10000000"
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is out of setting range")
     end

@@ -8,15 +8,17 @@ FactoryBot.define do
     estimated_shipping_id   {'4'}
     product_description     {'ddddjjjj'}
     price                   {'500'}
-  end
-
-
-
-    #content {Faker::Lorem.sentence}
-    #association :user
-    #association :
-
+    association :user
+    
     after(:build) do |item|
-      item.image.attach(io: File.open('app/assets/images/flag.png'), filename: 'flag.png')
+      item.image.attach(io: File.open('public/images/flag.png'), filename: 'flag.png')
+    end
   end
 end
+
+
+    #association :user
+
+    #content {Faker::Lorem.sentence}
+    #association :
+
