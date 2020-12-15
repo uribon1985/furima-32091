@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   with_options presence: true do
     validates :name                       #商品名
@@ -10,7 +9,7 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1} do
     validates :category_id                #カテゴリー
     validates :product_condition_id       #商品の状態
-    validates :shipping_charges_id        #配送料の負担
+    validates :shipping_charge_id        #配送料の負担
     validates :estimated_shipping_id      #配送日数
   end
 
@@ -20,5 +19,6 @@ class Item < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  belongs_to :shipping_charge
 end
 
