@@ -20,5 +20,10 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   belongs_to :shipping_charge
+  belongs_to :category
+  belongs_to :estimated_shipping
+  belongs_to :product_condition
+  belongs_to :shipping_area
+  belongs_to :name
 end
 
