@@ -24,5 +24,6 @@ class Item < ApplicationRecord
   belongs_to :estimated_shipping
   belongs_to :product_condition
   belongs_to :shipping_area
+  has_one    :order
 end
 

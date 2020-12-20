@@ -3,7 +3,7 @@ FactoryBot.define do
     name                    {'ddd'}
     category_id             {3}
     product_condition_id    {2}
-    shipping_charges_id     {2}
+    shipping_charge_id     {2}
     shipping_area_id        {11}
     estimated_shipping_id   {4}
     product_description     {'ddddjjjj'}
@@ -11,7 +11,7 @@ FactoryBot.define do
     association :user
 
     after(:build) do |item|
-      item.image.attach(io: File.open('public/images/flag.png'), filename: 'flag.png')
+      item.image.attach(io: File.open('spec/test_images/output-image1.png'), filename: 'output-image1.png')
     end
   end
 end
