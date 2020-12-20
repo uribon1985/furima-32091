@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :token, :postal_code, :shipping_area_id, :address, :building_name, :phone_number, :order_id, :municipality, :user_id, :item_id
+  attr_accessor :token, :postal_code, :shipping_area_id, :address, :building_name, :phone_number, :municipality, :user_id, :item_id
   
   with_options presence: true do
     validates :postal_code,format: { with: /\A\d{3}[-]\d{4}\z/, message: 'ハイフンをつけてください' }         #郵便番号
