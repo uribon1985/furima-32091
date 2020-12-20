@@ -7,6 +7,5 @@ FactoryBot.define do
     address            {'hahahahaha'}
     building_name      {'dadadadada'}
     token              {'1231231231231231'}
-    #order_id
   end
 end

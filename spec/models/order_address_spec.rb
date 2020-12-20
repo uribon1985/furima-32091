@@ -9,7 +9,7 @@ RSpec.describe OrderAddress, type: :model do
       @order_address= FactoryBot.build(:order_address, user_id: @buyer.id,item_id: @item.id)
     end
 
-    it 'postal_codeとshipping_area_idとmunicipalityとphone_numberとaddressとtokenが存在していれば保存できる事'do
+    it 'postal_codeとshipping_area_idとmunicipalityとphone_numberとaddressとtokenとbuilding_nameが存在していれば保存できる事'do
      expect(@item).to be_valid
     end
 
@@ -45,21 +45,20 @@ RSpec.describe OrderAddress, type: :model do
      expect(@order_address.errors.full_messages).to include("Address can't be blank")
     end
 
-    it '電話番号が必須であること'do
-     @order_address.phone_number = ""
+    it '電話番号は数字のみでないと登録できないこと'do
+     @order_address.phone_number = "aあア"
      @order_address.valid?
-     expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+     expect(@order_address.errors.full_messages).to include("Phone number 全て数字にしてください")
     end
 
-    it '電話番号にはハイフン不要で11桁であること'do
-     @order_address.phone_number = ""
+    it '電話番号にはハイフン不要で11桁以内でないと登録できないこと'do
+     @order_address.phone_number = "012345678999"
      @order_address.valid?
-     expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+     expect(@order_address.errors.full_messages).to include("Phone number 11桁にしてください")
     end
 
     it 'クレジットカード情報は必須であること'do
      @order_address.token = ""
-    # binding.pry
      @order_address.valid?
      expect(@order_address.errors.full_messages).to include("Token can't be blank")
     end

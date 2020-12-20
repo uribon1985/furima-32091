@@ -5,9 +5,12 @@ class OrderAddress
   with_options presence: true do
     validates :postal_code,format: { with: /\A\d{3}[-]\d{4}\z/, message: 'ハイフンをつけてください' }         #郵便番号
     validates :phone_number, format: { with: /\A\d{11}\z/ , message: '11桁にしてください' } 
+    validates :phone_number, format: { with: /\A[0-9]+\z/ , message: '全て数字にしてください' } 
     validates :token 
     validates :municipality
     validates :address
+    validates :user_id
+    validates :item_id
   end
 
   validates :shipping_area_id, numericality: { other_than: 0}   #発送元の地域
